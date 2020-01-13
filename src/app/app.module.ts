@@ -1,24 +1,43 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ProductsComponent } from './components/products/products.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {AppComponent} from './app.component';
+import {HeaderComponent} from './components/header/header.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {ProductsComponent} from './components/products/products.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {ProductCreateComponent} from './components/product-create/product-create.component';
+import { ProductUpdateComponent } from './components/product-update/product-update.component';
 
 const routes = [
   {
-    path: "",
+    path: '',
     component: DashboardComponent
   },
   {
-    path: "products",
+    path: 'products',
     component: ProductsComponent
+  },
+  {
+    path: 'products',
+    children: [
+      {
+        path: '',
+        component: ProductsComponent
+      },
+      {
+        path: 'create',
+        component: ProductCreateComponent
+      },
+      {
+        path: 'update/:productId',
+        component: ProductUpdateComponent
+      }
+    ]
   }
 ];
 
@@ -27,7 +46,9 @@ const routes = [
     AppComponent,
     HeaderComponent,
     DashboardComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductCreateComponent,
+    ProductUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -40,4 +61,5 @@ const routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
