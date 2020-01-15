@@ -3,7 +3,6 @@ import {IProduct} from 'src/app/interfaces/IProduct';
 import {HttpClient} from '@angular/common/http';
 import {environment} from 'src/environments/environment';
 import {Router} from '@angular/router';
-import {consoleTestResultHandler} from 'tslint/lib/test';
 import {ICategory} from '../../interfaces/ICategory';
 
 @Component({
