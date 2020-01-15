@@ -41,7 +41,7 @@ export class ProductUpdateComponent implements OnInit {
   }
 
   public saveProduct() {
-    this.http.put(environment.apiUrl + '/products/this.product._id', this.product)
+    this.http.put(environment.apiUrl + '/products/' + this.product._id, this.product)
       .subscribe(response => {
         this.router.navigate(['/products']);
       });
