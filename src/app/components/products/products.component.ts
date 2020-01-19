@@ -26,7 +26,7 @@ export class ProductsComponent implements OnInit {
 
   public getProducts() {
     this.loading = true;
-    this.http.get<IProduct[]>(environment.apiUrl + "/products")
+    this.http.get<IProduct[]>(environment.apiUrl + '/products')
     .subscribe(response => {
       this.products = response;
       this.loading = false;
@@ -34,7 +34,7 @@ export class ProductsComponent implements OnInit {
   }
 
   public deleteProduct(id) {
-    this.http.delete(environment.apiUrl + "/products/" + id)
+    this.http.delete(environment.apiUrl + '/products/' + id)
     .subscribe(_ => {
       this.getProducts();
     });

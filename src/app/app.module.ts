@@ -13,8 +13,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {ProductCreateComponent} from './components/product-create/product-create.component';
 import {ProductUpdateComponent} from './components/product-update/product-update.component';
 import {CategoriesComponent} from './components/categories/categories.component';
-import { CategoryCreateComponent } from './components/category-create/category-create.component';
-import { CategoryUpdateComponent } from './components/category-update/category-update.component';
+import {CategoryCreateComponent} from './components/category-create/category-create.component';
+import {CategoryUpdateComponent} from './components/category-update/category-update.component';
+import {UsersComponent} from './components/users/users.component';
+import {UserCreateComponent} from './components/user-create/user-create.component';
+import {UserUpdateComponent} from './components/user-update/user-update.component';
+import { DepartmentsComponent } from './components/departments/departments.component';
+import { DepartmentCreateComponent } from './components/department-create/department-create.component';
+import { DepartmentUpdateComponent } from './components/department-update/department-update.component';
 
 const routes = [
   {
@@ -59,6 +65,41 @@ const routes = [
       }
 
     ]
+  },
+  {
+    path: 'users',
+    children: [
+      {
+        path: '',
+        component: UsersComponent
+      },
+      {
+        path: 'create',
+        component: UserCreateComponent
+      },
+      {
+        path: 'update/:userId',
+        component: UserUpdateComponent
+      },
+
+    ]
+  },
+  {
+    path: 'departments',
+    children: [
+      {
+        path: '',
+        component: DepartmentsComponent
+      },
+      {
+        path: 'create',
+        component: DepartmentCreateComponent
+      },
+      {
+        path: 'update/:departmentId',
+        component: DepartmentUpdateComponent
+      }
+    ]
   }
 ];
 
@@ -72,7 +113,13 @@ const routes = [
     ProductUpdateComponent,
     CategoriesComponent,
     CategoryCreateComponent,
-    CategoryUpdateComponent
+    CategoryUpdateComponent,
+    UsersComponent,
+    UserCreateComponent,
+    UserUpdateComponent,
+    DepartmentsComponent,
+    DepartmentCreateComponent,
+    DepartmentUpdateComponent
   ],
   imports: [
     BrowserModule,

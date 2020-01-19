@@ -1,0 +1,33 @@
+<script src="user-update.component.ts"></script>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Update User</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <div class="form-group">
+        <label for="users_firstName">User first name</label>
+        <input [(ngModel)]="user.firstName" type="text" class="form-control" id="users_firstName">
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-group">
+        <label for="users_lastName">User last name</label>
+        <input [(ngModel)]="user.lastName" type="text" class="form-control" id="users_lastName">
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-group">
+        <label for="users_email">User email</label>
+        <input [(ngModel)]="user.email" type="text" class="form-control" id="users_email">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 offset-4 mt-2 mb-5">
+      <button (click)="saveUser()" class="btn btn-success btn-block">Save</button>
+    </div>
+  </div>
+</div>

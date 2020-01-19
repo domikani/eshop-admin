@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from 'src/environments/environment';
-import {IProduct} from '../../interfaces/IProduct';
+
 
 @Component({
   selector: 'app-categories',
@@ -11,6 +11,7 @@ import {IProduct} from '../../interfaces/IProduct';
 export class CategoriesComponent implements OnInit {
 
   public categories = [];
+  public loading: boolean = false;
 
 
   constructor(
@@ -23,12 +24,15 @@ export class CategoriesComponent implements OnInit {
   }
 
   public getCategories() {
+    this.loading = true;
     this.http.get(environment.apiUrl + '/categories')
       .subscribe(response => {
-          this.categories= response;
+          this.categories = response;
+          this.loading = false;
         }
       );
   }
+
   public deleteCategory(id) {
     this.http.delete(environment.apiUrl + '/categories/' + id)
       .subscribe(_ => {
