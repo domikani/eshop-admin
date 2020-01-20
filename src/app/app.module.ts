@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -123,6 +124,7 @@ const routes = [
   ],
   imports: [
     BrowserModule,
+    EditorModule,
     CommonModule,
     FormsModule,
     HttpClientModule,

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from 'src/environments/environment';
-
+import {ICategory} from '../../interfaces/ICategory';
 
 @Component({
   selector: 'app-categories',
@@ -10,7 +10,7 @@ import {environment} from 'src/environments/environment';
 })
 export class CategoriesComponent implements OnInit {
 
-  public categories = [];
+  public categories: ICategory[] = [];
   public loading: boolean = false;
 
 
@@ -25,7 +25,7 @@ export class CategoriesComponent implements OnInit {
 
   public getCategories() {
     this.loading = true;
-    this.http.get(environment.apiUrl + '/categories')
+    this.http.get<ICategory[]>(environment.apiUrl + '/categories')
       .subscribe(response => {
           this.categories = response;
           this.loading = false;
