@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {environment} from 'src/environments/environment';
 import {HttpClient} from '@angular/common/http';
+import {IDepartment} from '../../interfaces/IDepartment';
 
 @Component({
   selector: 'app-departments',
@@ -8,7 +9,7 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./departments.component.scss']
 })
 export class DepartmentsComponent implements OnInit {
-  public departments = [];
+  public departments: IDepartment [] = [];
   public loading: boolean = false;
 
   constructor(
@@ -22,7 +23,7 @@ export class DepartmentsComponent implements OnInit {
 
   public getDepartments() {
     this.loading = true;
-    this.http.get(environment.apiUrl + '/departments')
+    this.http.get<IDepartment[]>(environment.apiUrl + '/departments')
       .subscribe(response => {
         this.departments = response;
         this.loading = false;

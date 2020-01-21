@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from 'src/environments/environment';
+import {IUser} from '../../interfaces/IUser';
 
 @Component({
   selector: 'app-users',
@@ -9,7 +10,7 @@ import {environment} from 'src/environments/environment';
 })
 export class UsersComponent implements OnInit {
   public loading: boolean = false;
-  public users = [];
+  public users: IUser [] = [];
 
   constructor(
     private http: HttpClient
@@ -22,7 +23,7 @@ export class UsersComponent implements OnInit {
 
   public getUsers() {
     this.loading = true;
-    this.http.get(environment.apiUrl + '/users')
+    this.http.get<IUser[]>(environment.apiUrl + '/users')
       .subscribe(response => {
         this.users = response;
         this.loading = false;
