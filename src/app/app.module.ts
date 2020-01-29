@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import { EditorModule } from '@tinymce/tinymce-angular';
+import {EditorModule} from '@tinymce/tinymce-angular';
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -19,89 +19,103 @@ import {CategoryUpdateComponent} from './components/category-update/category-upd
 import {UsersComponent} from './components/users/users.component';
 import {UserCreateComponent} from './components/user-create/user-create.component';
 import {UserUpdateComponent} from './components/user-update/user-update.component';
-import { DepartmentsComponent } from './components/departments/departments.component';
-import { DepartmentCreateComponent } from './components/department-create/department-create.component';
-import { DepartmentUpdateComponent } from './components/department-update/department-update.component';
+import {DepartmentsComponent} from './components/departments/departments.component';
+import {DepartmentCreateComponent} from './components/department-create/department-create.component';
+import {DepartmentUpdateComponent} from './components/department-update/department-update.component';
+import {LoginComponent} from './components/login/login.component';
+import {AdminLayoutComponent} from './components/admin-layout/admin-layout.component';
 
 const routes = [
   {
     path: '',
-    component: DashboardComponent
-  },
-  {
-    path: 'products',
-    component: ProductsComponent
-  },
-  {
-    path: 'products',
+    component: AdminLayoutComponent,
     children: [
       {
         path: '',
+        component: DashboardComponent
+      },
+      {
+        path: 'products',
         component: ProductsComponent
       },
       {
-        path: 'create',
-        component: ProductCreateComponent
+        path: 'products',
+        children: [
+          {
+            path: '',
+            component: ProductsComponent
+          },
+          {
+            path: 'create',
+            component: ProductCreateComponent
+          },
+          {
+            path: 'update/:productId',
+            component: ProductUpdateComponent
+          }
+        ]
       },
       {
-        path: 'update/:productId',
-        component: ProductUpdateComponent
-      }
-    ]
-  },
-  {
-    path: 'categories',
-    children: [
-      {
-        path: '',
-        component: CategoriesComponent
+        path: 'categories',
+        children: [
+          {
+            path: '',
+            component: CategoriesComponent
+          },
+          {
+            path: 'create',
+            component: CategoryCreateComponent
+          },
+          {
+            path: 'update/:categoryId',
+            component: CategoryUpdateComponent
+          }
+
+        ]
       },
       {
-        path: 'create',
-        component: CategoryCreateComponent
+        path: 'users',
+        children: [
+          {
+            path: '',
+            component: UsersComponent
+          },
+          {
+            path: 'create',
+            component: UserCreateComponent
+          },
+          {
+            path: 'update/:userId',
+            component: UserUpdateComponent
+          },
+
+        ]
       },
       {
-        path: 'update/:categoryId',
-        component: CategoryUpdateComponent
+        path: 'departments',
+        children: [
+          {
+            path: '',
+            component: DepartmentsComponent
+          },
+          {
+            path: 'create',
+            component: DepartmentCreateComponent
+          },
+          {
+            path: 'update/:departmentId',
+            component: DepartmentUpdateComponent
+          }
+        ]
       }
 
     ]
   },
   {
-    path: 'users',
-    children: [
-      {
-        path: '',
-        component: UsersComponent
-      },
-      {
-        path: 'create',
-        component: UserCreateComponent
-      },
-      {
-        path: 'update/:userId',
-        component: UserUpdateComponent
-      },
-
-    ]
-  },
-  {
-    path: 'departments',
-    children: [
-      {
-        path: '',
-        component: DepartmentsComponent
-      },
-      {
-        path: 'create',
-        component: DepartmentCreateComponent
-      },
-      {
-        path: 'update/:departmentId',
-        component: DepartmentUpdateComponent
-      }
-    ]
+    path: 'login',
+    component: LoginComponent
   }
+
 ];
 
 @NgModule({
@@ -120,7 +134,9 @@ const routes = [
     UserUpdateComponent,
     DepartmentsComponent,
     DepartmentCreateComponent,
-    DepartmentUpdateComponent
+    DepartmentUpdateComponent,
+    LoginComponent,
+    AdminLayoutComponent
   ],
   imports: [
     BrowserModule,
