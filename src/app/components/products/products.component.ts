@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { IProduct } from 'src/app/interfaces/IProduct';
-import { environment } from 'src/environments/environment';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {IProduct} from 'src/app/interfaces/IProduct';
+import {environment} from 'src/environments/environment';
+import {IResponse} from '../../interfaces/IResponse';
+import {LocalStorageService} from 'ngx-webstorage';
 
 
 @Component({
@@ -15,8 +17,10 @@ export class ProductsComponent implements OnInit {
   public products: IProduct[] = [];
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private ls: LocalStorageService
+  ) {
+  }
 
   ngOnInit() {
 
@@ -26,18 +30,22 @@ export class ProductsComponent implements OnInit {
 
   public getProducts() {
     this.loading = true;
-    this.http.get<IProduct[]>(environment.apiUrl + '/products')
-    .subscribe(response => {
-      this.products = response;
-      this.loading = false;
-    });
+    this.http.get<IResponse>(environment.apiUrl + '/products', {
+      headers: {
+        authorization: 'Bearer ' + this.ls.retrieve('token')
+      }
+    })
+      .subscribe(response => {
+        this.products = response.products;
+        this.loading = false;
+      });
   }
 
   public deleteProduct(id) {
     this.http.delete(environment.apiUrl + '/products/' + id)
-    .subscribe(_ => {
-      this.getProducts();
-    });
+      .subscribe(_ => {
+        this.getProducts();
+      });
   }
 
 }

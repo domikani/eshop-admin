@@ -21,6 +21,10 @@
           <a class="nav-link" routerLink="/departments">Departments</a>
         </li>
       </ul>
+      <span class="text-white p-2">Hello {{user?.firstName}}</span>
+      <button (click)="logout()" class="btn btn-outline-light">
+        Logout
+      </button>
 
     </div>
   </nav>
