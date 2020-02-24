@@ -37,5 +37,14 @@ export class ProductCreateComponent implements OnInit {
       .subscribe(response => {
         this.categories = response;
       });
+
+  }
+
+  public onUploadSuccess(data) {
+    this.product.photo = data[1].filename;
+  }
+
+  public onUploadError(data) {
+    console.log('ERROR: ', data);
   }
 }

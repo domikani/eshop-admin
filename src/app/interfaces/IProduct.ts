@@ -9,6 +9,7 @@ export interface IProduct {
   artist: string;
   recordLabel: string;
   type: string;
+  gallery: string[];
   releaseDate: string;
 
 

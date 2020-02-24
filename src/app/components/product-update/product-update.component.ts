@@ -4,6 +4,7 @@ import {ICategory} from '../../interfaces/ICategory';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../environments/environment';
+import {IResponse} from 'src/app/interfaces/IResponse';
 
 
 @Component({
@@ -30,6 +31,27 @@ export class ProductUpdateComponent implements OnInit {
       this.initProduct(params.productId);
     });
   }
+
+  public onUploadSuccess(data) {
+    this.product.photo = data[1].filename;
+  }
+
+  public onUploadError(data) {
+    console.log('ERROR: ', data);
+  }
+
+  // Gallery
+  public onUploadGallerySuccess(data) {
+    if (!this.product.gallery) {
+      this.product.gallery = [];
+    }
+    this.product.gallery.push(data[1].filename);
+  }
+
+  public removeFromGallery(i) {
+    this.product.gallery.splice(i, 1);
+  }
+
 
   public initProduct(id: string) {
     this.http.get<IProduct>(environment.apiUrl + '/products/' + id)

@@ -63,7 +63,12 @@
     <div class="col-6">
       <div class="form-group">
         <label for="product_photo">Photo</label>
-        <input [(ngModel)]="product.photo" type="url" class="form-control" id="product_photo"/>
+        <dropzone
+          [config]="{maxFiles: 1, addRemoveLinks: true}"
+          [message]="'Click or drag images here to upload'"
+          (error) = 'onUploadError($event)'
+          (success)="onUploadSuccess($event)"
+        ></dropzone>
       </div>
     </div>
   </div>
@@ -77,11 +82,6 @@
   <div class="row">
     <div class="col-4 offset-4 mt-2 mb-5">
       <button (click)="saveProduct()" class="btn btn-success btn-block">Save</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <pre>{{product| json}}</pre>
     </div>
   </div>
 
