@@ -10,8 +10,9 @@ import {ICategory} from '../../interfaces/ICategory';
 })
 export class CategoriesComponent implements OnInit {
 
+
+  public loading = false;
   public categories: ICategory[] = [];
-  public loading: boolean = false;
 
 
   constructor(

@@ -9,7 +9,7 @@ import {IUser} from '../../interfaces/IUser';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  public loading: boolean = false;
+  public loading = false;
   public users: IUser [] = [];
 
   constructor(

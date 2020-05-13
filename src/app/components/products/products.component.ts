@@ -13,7 +13,7 @@ import {LocalStorageService} from 'ngx-webstorage';
 })
 export class ProductsComponent implements OnInit {
 
-  public loading: boolean = false;
+  public loading = false;
   public products: IProduct[] = [];
 
   constructor(
